@@ -459,22 +459,6 @@ If you find this plugin useful, please consider giving it a ⭐ on GitHub!
 
 ---
 
-## 📝 Changelog
-
-### Version 1.1-SNAPSHOT
-
-- ✨ Initial release
-- ✅ Custom advancement creation via GUI
-- 🗄️ SQLite and MySQL support
-- 🎁 Command-based rewards
-- 💰 Vault money rewards
-- 🔊 Custom sound effects
-- 📊 Action bar progression display
-- 📈 bStats integration
-- 🎨 Full display customization
-
----
-
 <div align="center">
 
 **Made with ❤️ by Sky X Network**
