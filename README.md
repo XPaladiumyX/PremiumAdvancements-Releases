@@ -1,186 +1,357 @@
-# 🌟 Premium Advancements
+# 🌟 Premium Advancements - Documentation
 
 [![Minecraft Version](https://img.shields.io/badge/Minecraft-1.21+-brightgreen.svg)](https://papermc.io/)
 [![Java Version](https://img.shields.io/badge/Java-21-orange.svg)](https://adoptium.net/)
-[![bStats](https://img.shields.io/badge/bStats-Enabled-blue.svg)](https://bstats.org/)
 
-> **A powerful and feature-rich custom advancement system for Minecraft servers**
-
-Create fully customizable advancements with a user-friendly GUI, complete progression tracking, rewards system, and
-extensive configuration options!
+> **A powerful custom advancement system for Minecraft servers with progression tracking, rewards, and advanced conditions**
 
 ---
 
-## 📖 Table of Contents
+## 📋 Table of Contents
 
-- [Features](#-features)
-- [Requirements](#-requirements)
 - [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Usage](#-usage)
-- [Permissions](#-permissions)
-- [Commands](#-commands)
-- [API Integration](#-api-integration)
-- [Database Support](#-database-support)
-- [Credits](#-credits)
-- [Support](#-support)
-- [License](#-license)
-
----
-
-## ✨ Features
-
-### 🎯 Core Features
-
-- **✅ Fully Custom Advancements** - Create unlimited custom advancements with unique triggers
-- **🖼️ Visual GUI Editor** - Easy-to-use in-game interface for managing advancements
-- **📊 Progress Tracking** - Track player progression with counter-based advancements
-- **🎁 Reward System** - Execute commands and give money rewards upon completion
-- **🔊 Sound Effects** - Play custom sounds when players unlock advancements
-- **💬 Action Bar Progress** - Show real-time progression in the action bar (configurable)
-- **🗄️ Database Support** - Choose between SQLite (easy) or MySQL/MariaDB (production)
-
-### 🎨 Display Customization
-
-- **Position Control** - Place advancements anywhere in the GUI (X/Y coordinates)
-- **Frame Types** - Choose between TASK, GOAL, or CHALLENGE frames
-- **Toast Notifications** - Enable/disable popup notifications
-- **Chat Announcements** - Announce unlocks to all players or keep them private
-- **Custom Icons** - Use any Minecraft material as the advancement icon
-- **Background Themes** - Customize the advancement tab background texture
-
-### 🔧 Advanced Features
-
-- **Multiple Trigger Types:**
-    - `JOIN` - Triggered when player joins the server
-    - `BREAK_BLOCK` - Triggered when breaking specific blocks
-    - `PLACE_BLOCK` - Triggered when placing specific blocks
-    - `KILL` - Triggered when killing entities
-    - `OBTAIN_ITEM` - Triggered when obtaining specifics items
-
-- **Counter System:**
-    - Set required amounts (e.g., "Break 100 stone blocks")
-    - Real-time progress display in action bar
-    - Persistent progression across sessions
-
-- **Reward System:**
-    - Execute multiple console commands
-    - Give money via Vault integration
-    - Placeholder support (`%player%`)
-
-- **Admin Tools:**
-    - Reset individual player advancements
-    - Reset all advancements for a player
-    - Real-time config reload
-
----
-
-## 📋 Requirements
-
-### Essential
-
-- **Minecraft Server:** Paper 1.21.4+ (or any Paper fork)
-- **Java:** 21 or higher
-- **Required Plugin:** [UltimateAdvancementAPI](https://www.spigotmc.org/resources/95585/) v2.7.1+
-
-### Optional
-
-- **Vault** - For economy/money rewards (recommended)
-- **MySQL/MariaDB** - For better performance on larger servers
+- [Quick Start](#-quick-start)
+- [Creating Advancements](#-creating-advancements)
+- [Trigger Types](#-trigger-types)
+- [Advanced Features](#-advanced-features)
+- [Configuration Files](#-configuration-files)
+- [Commands & Permissions](#-commands--permissions)
+- [Troubleshooting](#-troubleshooting)
 
 ---
 
 ## 📥 Installation
 
-1. **Download Requirements:**
-    - Download [UltimateAdvancementAPI](https://www.spigotmc.org/resources/95585/)
-    - Download [Vault](https://www.spigotmc.org/resources/34315/) (optional, for money rewards)
-    - Download **Premium Advancements** (this plugin)
+### Requirements
 
-2. **Install Plugins:**
-   ```
-   server/
-   └── plugins/
-       ├── UltimateAdvancementAPI.jar
-       ├── Vault.jar (optional)
-       └── PremiumAdvancements.jar
-   ```
+1. **Server:** Paper 1.21.4+ (or any Paper fork)
+2. **Java:** Version 21 or higher
+3. **Dependencies:**
+   - [UltimateAdvancementAPI](https://www.spigotmc.org/resources/95585/) v2.7.1+ (Required)
+   - [Vault](https://www.spigotmc.org/resources/34315/) (Optional, for money rewards)
 
-3. **Start Server:**
-    - Start your server to generate default configuration files
-    - The plugin will automatically create:
-        - `config.yml` - Main configuration
-        - `advancements.yml` - Custom advancements storage
-        - `adv-gui.yml` - GUI appearance settings
-        - `data.db` - SQLite database (if using SQLite)
+### Installation Steps
 
-4. **Configure:**
-    - Edit configuration files to your liking
-    - Restart the server for changes to take effect
+1. Download and install UltimateAdvancementAPI
+2. (Optional) Download and install Vault + an economy plugin
+3. Download Premium Advancements
+4. Place all plugins in your `plugins/` folder
+5. Start your server
+6. Configure advancements in `plugins/PremiumAdvancements/advancements.yml`
+7. Restart the server to apply changes
 
 ---
 
-## ⚙️ Configuration
+## 🚀 Quick Start
 
-### `config.yml`
+### Opening the GUI
+
+Use `/padv gui` to open the management interface where you can:
+- View all custom advancements
+- Create new advancements
+- Edit existing advancements
+- Delete advancements
+
+### Your First Advancement
+
+1. Open the GUI with `/padv gui`
+2. Click "Create Advancement"
+3. Set the **Title** and **Description**
+4. Choose an **Icon** (any Minecraft material)
+5. Select a **Trigger** (e.g., JOIN, BREAK_BLOCK, OBTAIN_ITEM)
+6. Configure **Display Options** (position, frame type, notifications)
+7. (Optional) Add **Rewards** or **Money**
+8. Click "Save"
+9. **Restart the server** for changes to take effect
+
+---
+
+## 🎯 Creating Advancements
+
+### Basic Settings
+
+| Setting | Description | Example |
+|---------|-------------|---------|
+| **Title** | Name of the advancement | "First Steps" |
+| **Description** | What the player needs to do | "Join the server" |
+| **Icon** | Material displayed in menu | DIAMOND |
+| **Icon Custom Model Data** | For custom textures (ItemsAdder/Oraxen) | 1001 |
+| **Trigger** | How it's unlocked | JOIN, BREAK_BLOCK, etc. |
+
+### Display Options
+
+- **Position (X/Y):** Where it appears in the advancement menu (press L)
+- **Frame Type:**
+  - `TASK` - Square frame (lime)
+  - `GOAL` - Rounded frame (lime)
+  - `CHALLENGE` - Star frame (purple)
+- **Show Toast:** Popup notification when unlocked
+- **Announce in Chat:** Broadcast to all players
+- **Action Bar:** Show progress bar (for counter-based)
+
+### Sound Options
+
+- **Enabled:** Play sound on unlock
+- **Type:** Sound name (e.g., `UI_TOAST_CHALLENGE_COMPLETE`)
+- **Volume:** 0.0 to 1.0
+- **Pitch:** 0.5 to 2.0
+
+---
+
+## ⚡ Trigger Types
+
+### 1. JOIN
+Triggered when a player joins the server.
 
 ```yaml
-# Database Configuration
+first_join:
+  title: "Welcome!"
+  description: "Join the server for the first time"
+  icon: NETHER_STAR
+  trigger: JOIN
+```
+
+### 2. BREAK_BLOCK
+Triggered when breaking specific blocks (or any block).
+
+```yaml
+stone_breaker:
+  title: "Stone Breaker"
+  description: "Break 100 stone blocks"
+  icon: STONE
+  trigger: BREAK_BLOCK
+  block: STONE        # Optional: specific block type
+  amount: 100         # Number required
+```
+
+### 3. PLACE_BLOCK
+Triggered when placing specific blocks (or any block).
+
+```yaml
+builder:
+  title: "Builder"
+  description: "Place 500 blocks"
+  icon: BRICKS
+  trigger: PLACE_BLOCK
+  amount: 500
+```
+
+### 4. KILL
+Triggered when killing entities.
+
+```yaml
+monster_slayer:
+  title: "Monster Slayer"
+  description: "Kill 50 mobs"
+  icon: DIAMOND_SWORD
+  trigger: KILL
+  amount: 50
+```
+
+### 5. OBTAIN_ITEM ⭐ New in v1.2
+Triggered when obtaining items (pickup, crafting, or from containers).
+
+```yaml
+diamond_hunter:
+  title: "Diamond Hunter"
+  description: "Obtain your first diamond"
+  icon: DIAMOND
+  trigger: OBTAIN_ITEM
+  item: DIAMOND              # Required item type
+  amount: 1                  # Number required
+  customModelData: -1        # Optional: for ItemsAdder/Oraxen
+```
+
+**Important Notes:**
+- Works with pickup, crafting, smelting, and container looting
+- Supports Custom Model Data for custom items
+- Checks player inventory on join for existing items
+- Progress is saved across sessions
+
+---
+
+## 🔥 Advanced Features
+
+### 1. Dependencies (Requirements) ⭐ New in v1.3
+
+Make advancements unlock in order by requiring previous completions.
+
+```yaml
+advanced_miner:
+  title: "Advanced Miner"
+  description: "Break 500 stone blocks"
+  icon: DIAMOND_PICKAXE
+  trigger: BREAK_BLOCK
+  block: STONE
+  amount: 500
+  requires:                  # Must complete these first
+    - first_join
+    - stone_breaker
+```
+
+**How it works:**
+- Players must complete ALL required advancements first
+- If not met, they receive a message explaining what's needed
+- Perfect for creating progression chains
+
+### 2. World Restrictions ⭐ New in v1.3
+
+Limit advancements to specific worlds.
+
+```yaml
+nether_explorer:
+  title: "Nether Explorer"
+  description: "Obtain 16 netherrack"
+  icon: NETHERRACK
+  trigger: OBTAIN_ITEM
+  item: NETHERRACK
+  amount: 16
+  conditions:
+    worlds:                  # Only works in these worlds
+      - world_nether
+      - nether_custom
+```
+
+**How it works:**
+- Only triggers in specified worlds
+- Players entering allowed worlds get progress checked
+- Empty list = works in all worlds
+
+### 3. Permission Requirements ⭐ New in v1.3
+
+Restrict advancements to players with specific permissions.
+
+```yaml
+vip_reward:
+  title: "VIP Member"
+  description: "Join as a VIP member"
+  icon: GOLD_BLOCK
+  trigger: JOIN
+  conditions:
+    permission: "premiumadvancements.vip"
+```
+
+**How it works:**
+- Only players with the permission can unlock it
+- Others won't trigger it (no error message)
+- Perfect for rank-based rewards
+
+### 4. Custom Icons (ItemsAdder/Oraxen) ⭐ Enhanced in v1.3
+
+Use custom textures for advancement icons.
+
+```yaml
+custom_sword:
+  title: "Legendary Sword"
+  description: "Obtain the legendary sword"
+  icon: DIAMOND_SWORD
+  iconCustomModelData: 1001  # Custom texture for icon
+  trigger: OBTAIN_ITEM
+  item: DIAMOND_SWORD
+  customModelData: 1001      # Match custom item
+```
+
+**Two Custom Model Data fields:**
+- `iconCustomModelData` - For the advancement icon (visual only)
+- `customModelData` - For matching the actual item (OBTAIN_ITEM trigger)
+
+### 5. Rewards System
+
+#### Command Rewards
+Execute console commands when unlocked:
+
+```yaml
+rewards:
+  - "give %player% diamond 5"
+  - "say %player% completed an achievement!"
+```
+
+#### Money Rewards (Requires Vault)
+Give economy money:
+
+```yaml
+money:
+  enabled: true
+  amount: 1000.0
+```
+
+---
+
+## ⚙️ Configuration Files
+
+### config.yml
+
+```yaml
+# Language: en (English) or fr (French)
+language: 'en'
+
+# Database
 database:
-  type: 'sqlite'  # or 'mysql'/'mariadb'
+  type: 'sqlite'           # or 'mysql'/'mariadb'
+  # MySQL settings (if type is mysql):
   host: 'localhost'
   port: 3306
   database: 'premiumadvancements'
   username: 'root'
   password: ''
 
-# Progression Display
+# Progression
 progression:
-  show-actionbar: true  # Global action bar toggle
+  show-actionbar: true     # Global action bar toggle
 
 # Metrics
 metrics:
-  enabled: true  # bStats metrics
+  enabled: true            # bStats statistics
 ```
 
-### `advancements.yml`
+### advancements.yml
 
+All your custom advancements are stored here. Edit via GUI or manually.
+
+**Structure:**
 ```yaml
 advancements:
-  example_advancement:
-    title: "Achievement Title"
-    description: "Achievement description"
-    icon: DIAMOND
-    trigger: BREAK_BLOCK
-    block: STONE
-    amount: 10
-    hasReward: true
-    rewards:
-      - "give %player% diamond 5"
-
+  advancement_id:
+    title: "Title"
+    description: "Description"
+    icon: MATERIAL_NAME
+    iconCustomModelData: -1        # -1 = disabled
+    trigger: TRIGGER_TYPE
+    # Trigger-specific options
+    amount: 1
     # Display options
     display:
       x: 1.0
       y: 0.0
-      frame: TASK  # TASK, GOAL, or CHALLENGE
+      frame: TASK
       showToast: true
       announceChat: false
-      showActionBar: true  # Override global setting
-
+      showActionBar: true
     # Sound options
     sound:
       enabled: true
       type: UI_TOAST_CHALLENGE_COMPLETE
       volume: 1.0
       pitch: 1.0
-
-    # Money reward (requires Vault)
+    # Rewards
+    hasReward: true
+    rewards:
+      - "command here"
     money:
       enabled: false
-      amount: 100.0
+      amount: 0.0
+    # Advanced conditions (v1.3)
+    requires:
+      - other_advancement_id
+    conditions:
+      worlds:
+        - world_name
+      permission: "permission.node"
 ```
 
-### `adv-gui.yml`
+### adv-gui.yml
+
+Controls the advancement tab appearance (press L in-game):
 
 ```yaml
 tab:
@@ -195,278 +366,130 @@ root:
 
 ---
 
-## 🎮 Usage
+## 🎮 Commands & Permissions
 
-### For Administrators
+### Commands
 
-#### Opening the GUI
-
-```
-/padv gui
-```
-
-- Access the main management interface
-- View all created advancements
-- Create, edit, or delete advancements
-
-#### Creating an Advancement
-
-1. Open the GUI with `/padv gui`
-2. Click the "Create Advancement" button
-3. Fill in the details:
-    - **Title** - The advancement name
-    - **Description** - What it's about
-    - **Icon** - Visual representation
-    - **Trigger** - How it's unlocked
-    - **Display Options** - Position, frame type, notifications
-    - **Sound Options** - Sound effect settings
-    - **Rewards** - Commands and money rewards
-
-4. Click "Save" to create
-
-#### Resetting Progress
-
-```
-/padv reset <player> <advancement_id>
-/padv reset <player> all
-```
-
-### For Players
-
-- Press **L** in-game to open the advancements menu
-- View your custom advancement tab
-- Track your progression
-- Unlock advancements by completing their requirements
-
----
-
-## 🔐 Permissions
-
-| Permission                  | Description                      | Default |
-|-----------------------------|----------------------------------|---------|
-| `premiumadvancements.admin` | Access to GUI and admin commands | OP      |
-| `premiumadvancements.reset` | Reset player advancements        | OP      |
-
----
-
-## 📜 Commands
-
-| Command                           | Description           | Permission                  |
-|-----------------------------------|-----------------------|-----------------------------|
-| `/padv`                           | Show help menu        | -                           |
-| `/padv help`                      | Show help menu        | -                           |
-| `/padv gui`                       | Open management GUI   | `premiumadvancements.admin` |
+| Command | Description | Permission |
+|---------|-------------|------------|
+| `/padv` | Show help menu | - |
+| `/padv gui` | Open management GUI | `premiumadvancements.admin` |
 | `/padv reset <player> <adv\|all>` | Reset player progress | `premiumadvancements.reset` |
-| `/padv reload`                    | Reload configuration  | `premiumadvancements.admin` |
+| `/padv reload` | Reload configuration | `premiumadvancements.admin` |
 
 **Aliases:** `/premiumadvancements`, `/padv`
 
----
+### Permissions
 
-## 🔌 API Integration
-
-### UltimateAdvancementAPI
-
-This plugin is built on top of [UltimateAdvancementAPI](https://github.com/frengor/UltimateAdvancementAPI) by frengor.
-
-- Handles the core advancement system
-- Manages player data persistence
-- Provides the advancement GUI framework
-
-### Vault (Optional)
-
-When Vault is installed, you can:
-
-- Give money rewards for completing advancements
-- Use any economy plugin compatible with Vault
-- Configure money amounts per advancement
-
-### bStats
-
-Anonymous usage statistics are collected via bStats to help improve the plugin.
-
-- **Completely anonymous** - No personal data collected
-- **Opt-out available** - Set `metrics.enabled: false` in config.yml
-- **View statistics:** [bStats Page](https://bstats.org/)
+| Permission | Description | Default |
+|------------|-------------|---------|
+| `premiumadvancements.admin` | Access GUI and admin commands | OP |
+| `premiumadvancements.reset` | Reset player advancements | OP |
 
 ---
 
-## 🗄️ Database Support
+## 🔧 Troubleshooting
+
+### Advancements don't appear in-game
+
+**Solution:** You must **restart the server** (not just reload) after creating/editing advancements.
+
+### Players can't see custom advancements
+
+1. Check that UltimateAdvancementAPI is installed and running
+2. Verify `adv-gui.yml` is properly configured
+3. Make sure players have unlocked the root advancement (automatic on join)
+4. Restart the server
+
+### OBTAIN_ITEM not triggering
+
+1. Verify the item material name is correct (e.g., `DIAMOND`, not `diamond`)
+2. If using Custom Model Data, ensure it matches exactly
+3. Check world restrictions - advancement may not work in current world
+4. Check permission requirements - player may lack required permission
+5. Check dependencies - player may need to complete other advancements first
+
+### Action bar not showing
+
+1. Check `config.yml` → `progression.show-actionbar: true`
+2. Verify advancement has `showActionBar: true` in display options
+3. Some advancements (JOIN, KILL without counter) don't use action bar
+
+### Rewards not working
+
+1. **Commands:** Verify syntax (no `/` prefix, use `%player%` placeholder)
+2. **Money:** Install Vault + an economy plugin (EssentialsX, etc.)
+3. Check console for error messages
+
+### Database connection fails (MySQL)
+
+1. Verify MySQL server is running
+2. Check credentials in `config.yml`
+3. Ensure database exists: `CREATE DATABASE premiumadvancements;`
+4. Check firewall allows connection on port 3306
+
+### Dependencies not working
+
+1. Verify required advancement IDs exist and are spelled correctly
+2. Check that players have actually completed the required advancements
+3. Use `/padv reset <player> <advancement>` to test progression
+
+---
+
+## 📊 Database Options
 
 ### SQLite (Default)
-
-**Best for:** Small servers (<50 players)
-
-**Pros:**
-
-- No setup required
-- Automatic file creation
-- Easy to backup
-
-**Cons:**
-
-- Slower with many players
-- Not suitable for networks
+- **Best for:** Small servers (<50 players)
+- **Pros:** No setup required, automatic
+- **Cons:** Slower with many players
+- **Location:** `plugins/PremiumAdvancements/data.db`
 
 ### MySQL/MariaDB (Recommended)
-
-**Best for:** Medium to large servers (50+ players) or networks
-
-**Pros:**
-
-- Better performance
-- Network support (BungeeCord/Velocity)
-- Concurrent access handling
-- Professional-grade reliability
-
-**Cons:**
-
-- Requires external database server
-- Additional setup needed
-
-**Setup:**
-
-1. Create a MySQL/MariaDB database
-2. Update `config.yml`:
-   ```yaml
-   database:
-     type: 'mysql'
-     host: 'localhost'
-     port: 3306
-     database: 'premiumadvancements'
-     username: 'your_username'
-     password: 'your_password'
-   ```
-3. Restart the server
+- **Best for:** Medium-large servers (50+ players), networks
+- **Pros:** Better performance, network support
+- **Cons:** Requires external database
+- **Setup:** Configure in `config.yml`, then restart
 
 ---
 
-## 🙏 Credits
+## 🌐 Multi-Language Support
 
-### Plugin Author
+### Available Languages
+- **English** (en.yml) - Default
+- **French** (fr.yml)
 
-- **XPaladiumyX** - Lead Developer
-- **Sky X Network** - Development Team
+### Creating Custom Languages
 
-### Dependencies & APIs
-
-- **[UltimateAdvancementAPI](https://github.com/frengor/UltimateAdvancementAPI)** by frengor
-    - Core advancement system
-    - Version: 2.7.1+
-
-- **[PaperMC](https://papermc.io/)**
-    - Minecraft server software
-    - Version: 1.21.4
-
-- **[Vault](https://github.com/MilkBowl/VaultAPI)** by **MilkBowl** (Optional)
-    - Economy API integration
-    - Version: 1.7+
-
-- **[HikariCP](https://github.com/brettwooldridge/HikariCP)** by **brettwooldridge**
-    - High-performance connection pooling
-    - Version: 5.1.0
-
-- **[bStats](https://bstats.org/)** by **Bastian Oppermann**
-    - Plugin metrics
-    - Version: 3.1.0
-
-### Special Thanks
-
-- **frengor** for creating UltimateAdvancementAPI
-- The **PaperMC** team for their excellent server software
-- The **Minecraft** modding community
-- All users and testers who provided feedback
+1. Go to `plugins/PremiumAdvancements/languages/`
+2. Copy `en.yml` as a template
+3. Rename to your language code (e.g., `es.yml`)
+4. Translate all messages
+5. Set `language: 'es'` in `config.yml`
+6. Reload: `/padv reload`
 
 ---
 
-## 💬 Support
+## 💡 Tips & Best Practices
 
-### Need Help?
+1. **Always restart the server** after creating/editing advancements
+2. Use **dependencies** to create logical progression chains
+3. Use **world restrictions** for dimension-specific achievements
+4. Use **Custom Model Data** for ItemsAdder/Oraxen integration
+5. Test advancements in creative mode first
+6. Use `/padv reset` to test player progression
+7. For production servers, use **MySQL instead of SQLite**
+8. Keep advancement IDs short and descriptive (e.g., `first_join`, `stone_breaker`)
 
-- **Discord:** [Join our Discord](https://discord.gg/pTErYjTh5h)
+---
+
+## 🆘 Support
+
+Need help? Join our community:
+
+- **Discord:** [discord.gg/pTErYjTh5h](https://discord.gg/pTErYjTh5h)
 - **Website:** [skyxnetwork.net](https://skyxnetwork.net)
-- **Issues:** [GitHub Issues](https://github.com/XPaladiumyX/PremiumAdvancements/issues)
-
-### Reporting Bugs
-
-When reporting bugs, please include:
-
-1. Server version (Paper/Spigot/etc.)
-2. Plugin version
-3. UltimateAdvancementAPI version
-4. Console error logs (if any)
-5. Steps to reproduce
-
-### Feature Requests
-
-We love hearing your ideas! Open a GitHub issue with the `enhancement` label.
+- **GitHub Issues:** [Report bugs & request features](https://github.com/XPaladiumyX/PremiumAdvancements-Releases/issues)
 
 ---
-
-## 📊 Statistics
-
-This plugin uses **bStats** to collect anonymous usage statistics.
-
-**What is collected:**
-
-- Server version
-- Plugin version
-- Number of players
-- Server location (country)
-- Java version
-- Database type used
-
-**What is NOT collected:**
-
-- Player names
-- Server IP
-- Server name
-- Any personal data
-
-You can opt-out by setting `metrics.enabled: false` in `config.yml`.
-
-View our statistics: https://bstats.org/plugin/bukkit/PremiumAdvancements
-
----
-
-## 📄 License
-
-This project is licensed under the **Sky X Network License** - see the LICENSE file for details.
-
-```
-Proprietary License
-
-Copyright (c) 2025-2026 Sky X Network. All rights reserved.
-
-Terms and Conditions
-1. Grant of License
-This software ("Premium Advancements") is provided free of charge for use, but the source code remains proprietary and confidential. By using this software, you agree to the following terms:
-
-2. Permitted Use
-You are permitted to:
-- Use the compiled plugin (JAR file) on your Minecraft server(s) free of charge
-- Download and install the plugin from official sources
-- Configure the plugin according to the provided documentation
-
-3....
-```
-
----
-
-## 🌟 Star History
-
-If you find this plugin useful, please consider giving it a ⭐ on GitHub!
-
----
-
-<div align="center">
 
 **Made with ❤️ by Sky X Network**
-
-[Website](https://skyxnetwork.net) • [Discord](https://discord.gg/pTErYjTh5h) • [Donate](https://www.paypal.me/skyxnetwork)
-
-
-</div>
-
-
-
