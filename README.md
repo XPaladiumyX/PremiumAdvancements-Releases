@@ -1,9 +1,9 @@
-# 🌟 Premium Advancements - Documentation
+# 🌟 Premium Advancements - Documentation v1.4
 
 [![Minecraft Version](https://img.shields.io/badge/Minecraft-1.21+-brightgreen.svg)](https://papermc.io/)
 [![Java Version](https://img.shields.io/badge/Java-21-orange.svg)](https://adoptium.net/)
 
-> **A powerful custom advancement system for Minecraft servers with progression tracking, rewards, and advanced conditions**
+> **A powerful custom advancement system for Minecraft servers with 12 trigger types, progression tracking, rewards, and advanced conditions**
 
 ---
 
@@ -58,7 +58,7 @@ Use `/padv gui` to open the management interface where you can:
 2. Click "Create Advancement"
 3. Set the **Title** and **Description**
 4. Choose an **Icon** (any Minecraft material)
-5. Select a **Trigger** (e.g., JOIN, BREAK_BLOCK, OBTAIN_ITEM)
+5. Select a **Trigger** (12 types available!)
 6. Configure **Display Options** (position, frame type, notifications)
 7. (Optional) Add **Rewards** or **Money**
 8. Click "Save"
@@ -76,7 +76,7 @@ Use `/padv gui` to open the management interface where you can:
 | **Description** | What the player needs to do | "Join the server" |
 | **Icon** | Material displayed in menu | DIAMOND |
 | **Icon Custom Model Data** | For custom textures (ItemsAdder/Oraxen) | 1001 |
-| **Trigger** | How it's unlocked | JOIN, BREAK_BLOCK, etc. |
+| **Trigger** | How it's unlocked | JOIN, BREAK_BLOCK, CRAFT_ITEM, etc. |
 
 ### Display Options
 
@@ -100,7 +100,9 @@ Use `/padv gui` to open the management interface where you can:
 
 ## ⚡ Trigger Types
 
-### 1. JOIN
+### Core Triggers (v1.0-1.3)
+
+#### 1. JOIN
 Triggered when a player joins the server.
 
 ```yaml
@@ -111,7 +113,7 @@ first_join:
   trigger: JOIN
 ```
 
-### 2. BREAK_BLOCK
+#### 2. BREAK_BLOCK
 Triggered when breaking specific blocks (or any block).
 
 ```yaml
@@ -124,7 +126,7 @@ stone_breaker:
   amount: 100         # Number required
 ```
 
-### 3. PLACE_BLOCK
+#### 3. PLACE_BLOCK
 Triggered when placing specific blocks (or any block).
 
 ```yaml
@@ -136,7 +138,7 @@ builder:
   amount: 500
 ```
 
-### 4. KILL
+#### 4. KILL
 Triggered when killing entities.
 
 ```yaml
@@ -148,7 +150,7 @@ monster_slayer:
   amount: 50
 ```
 
-### 5. OBTAIN_ITEM ⭐ New in v1.2
+#### 5. OBTAIN_ITEM
 Triggered when obtaining items (pickup, crafting, or from containers).
 
 ```yaml
@@ -167,6 +169,208 @@ diamond_hunter:
 - Supports Custom Model Data for custom items
 - Checks player inventory on join for existing items
 - Progress is saved across sessions
+
+---
+
+### ⭐ NEW in v1.4: Advanced Triggers
+
+#### 6. CRAFT_ITEM ⭐ NEW
+Triggered when crafting items via crafting table or inventory.
+
+```yaml
+crafty_crafter:
+  title: "Crafty Crafter"
+  description: "Craft an iron pickaxe"
+  icon: IRON_PICKAXE
+  trigger: CRAFT_ITEM
+  item: IRON_PICKAXE         # Item to craft
+  amount: 1                   # Number required
+```
+
+**Features:**
+- ✅ Detects crafting table and 2x2 inventory crafting
+- ✅ Supports shift-clicking (mass crafting)
+- ✅ Works with vanilla and custom items (ItemsAdder/Oraxen)
+- ✅ Cumulative tracking across sessions
+
+**Advanced Example:**
+```yaml
+master_crafter:
+  title: "Master Crafter"
+  description: "Craft 64 diamond pickaxes"
+  icon: DIAMOND_PICKAXE
+  trigger: CRAFT_ITEM
+  item: DIAMOND_PICKAXE
+  customModelData: 1001      # Optional: for custom items
+  amount: 64
+```
+
+#### 7. SMELT_ITEM ⭐ NEW
+Triggered when smelting items in furnaces, blast furnaces, or smokers.
+
+```yaml
+novice_smelter:
+  title: "Novice Smelter"
+  description: "Smelt a raw iron"
+  icon: RAW_IRON
+  trigger: SMELT_ITEM
+  item: IRON_INGOT
+  amount: 1
+```
+
+**Features:**
+- ✅ Works with Furnace, Blast Furnace, and Smoker
+- ✅ Detects the output item (smelted result)
+- ✅ Supports item filtering
+- ✅ Tracks cumulative smelting
+
+**Advanced Example:**
+```yaml
+iron_smelter:
+  title: "Iron Smelter"
+  description: "Smelt 100 iron ingots"
+  icon: IRON_INGOT
+  trigger: SMELT_ITEM
+  item: IRON_INGOT
+  amount: 100
+```
+
+#### 8. ANVIL_USE ⭐ NEW
+Triggered when using an anvil (renaming, repairing, or combining items).
+
+```yaml
+anvil_user:
+  title: "Use Anvil"
+  description: "Use an anvil 5 times"
+  icon: ANVIL
+  trigger: ANVIL_USE
+  amount: 5
+```
+
+**Features:**
+- ✅ Detects all anvil operations (rename, repair, combine)
+- ✅ Tracks each anvil transaction
+
+#### 9. GRINDSTONE_USE ⭐ NEW
+Triggered when using a grindstone to remove enchantments.
+
+```yaml
+grindstone_usager:
+  title: "Grindstone Usager"
+  description: "Use Grindstone ONE time"
+  icon: GRINDSTONE
+  trigger: GRINDSTONE_USE
+  amount: 1
+```
+
+**Features:**
+- ✅ Detects enchantment removal
+- ✅ Tracks each grindstone use
+
+#### 10. ENCHANT_ITEM ⭐ NEW
+Triggered when enchanting items at an enchantment table.
+
+```yaml
+test_enchant:
+  title: "Test"
+  description: "Enchant a diamond sword"
+  icon: DIAMOND_SWORD
+  trigger: ENCHANT_ITEM
+  item: DIAMOND_SWORD        # Optional: specific item
+```
+
+**Features:**
+- ✅ Detects enchantment table usage
+
+#### 11. ENTER_DIMENSION ⭐ NEW
+Triggered when entering specific dimensions.
+
+```yaml
+enter_the_nether:
+  title: "Enter the Nether"
+  description: "THE NETHHERRR!!!"
+  icon: OBSIDIAN
+  trigger: ENTER_DIMENSION
+  dimensionType: NETHER      # NETHER or END or NORMAL
+```
+
+**Dimension types:**
+- `NETHER` - The Nether dimension
+- `END` - The End dimension
+
+**Features:**
+- ✅ Detects dimension changes
+- ✅ Perfect for exploration achievements
+
+**Example for End:**
+```yaml
+end_explorer:
+  title: "End Explorer"
+  description: "Visit the End"
+  icon: END_STONE
+  trigger: ENTER_DIMENSION
+  dimensionType: END
+```
+
+#### 12. TRAVEL_DISTANCE ⭐ NEW
+Triggered when traveling a specific distance.
+
+```yaml
+walk_500:
+  title: "Walk"
+  description: "Walk 500 blocks"
+  icon: DIRT
+  trigger: TRAVEL_DISTANCE
+  travelMode: WALKING        # TOTAL, WALKING, BOAT, ELYTRA
+  amount: 500.0    # Distance in blocks
+```
+
+**Travel modes:**
+- `TOTAL` - Any movement (walking, boat, elytra, etc.)
+- `WALKING` - Only walking/running
+- `BOAT` - Boat or vehicle movement
+- `ELYTRA` - Elytra flight only
+
+**Features:**
+- ✅ Persistent tracking across sessions
+- ✅ Multiple travel modes
+- ✅ Shows progress in action bar
+- ✅ Perfect for exploration challenges
+
+**Advanced Examples:**
+
+Elytra Flight:
+```yaml
+elytra_traveler:
+  title: "ELYTRA"
+  description: "Travel 200 blocks with elytra"
+  icon: ELYTRA
+  trigger: TRAVEL_DISTANCE
+  travelMode: ELYTRA
+  amount: 200.0
+```
+
+Boat Travel:
+```yaml
+boat_captain:
+  title: "Boat Captain"
+  description: "Travel 500 blocks by boat"
+  icon: OAK_BOAT
+  trigger: TRAVEL_DISTANCE
+  travelMode: BOAT
+  amount: 500.0
+```
+
+Marathon Runner:
+```yaml
+marathon_runner:
+  title: "Marathon Runner"
+  description: "Walk 10,000 blocks"
+  icon: GOLDEN_BOOTS
+  trigger: TRAVEL_DISTANCE
+  travelMode: WALKING
+  amount: 10000.0
+```
 
 ---
 
@@ -253,7 +457,7 @@ custom_sword:
 
 **Two Custom Model Data fields:**
 - `iconCustomModelData` - For the advancement icon (visual only)
-- `customModelData` - For matching the actual item (OBTAIN_ITEM trigger)
+- `customModelData` - For matching the actual item (OBTAIN_ITEM/CRAFT_ITEM triggers)
 
 ### 5. Rewards System
 
@@ -308,7 +512,7 @@ metrics:
 
 All your custom advancements are stored here. Edit via GUI or manually.
 
-**Structure:**
+**Complete Structure:**
 ```yaml
 advancements:
   advancement_id:
@@ -317,8 +521,17 @@ advancements:
     icon: MATERIAL_NAME
     iconCustomModelData: -1        # -1 = disabled
     trigger: TRIGGER_TYPE
+    
     # Trigger-specific options
-    amount: 1
+    amount: 1                      # For counter-based triggers
+    block: STONE                   # For BREAK_BLOCK/PLACE_BLOCK
+    item: DIAMOND                  # For OBTAIN_ITEM/CRAFT_ITEM/ENCHANT_ITEM
+    customModelData: -1            # For custom items (OBTAIN_ITEM/CRAFT_ITEM)
+    
+    # v1.4 NEW: Advanced trigger options
+    dimensionType: NETHER          # For ENTER_DIMENSION (NETHER or END)
+    travelMode: WALKING            # For TRAVEL_DISTANCE (TOTAL/WALKING/BOAT/ELYTRA)
+    
     # Display options
     display:
       x: 1.0
@@ -327,12 +540,14 @@ advancements:
       showToast: true
       announceChat: false
       showActionBar: true
+    
     # Sound options
     sound:
       enabled: true
-      type: UI_TOAST_CHALLENGE_COMPLETE
+      type: UI.TOAST.CHALLENGE_COMPLETE
       volume: 1.0
       pitch: 1.0
+    
     # Rewards
     hasReward: true
     rewards:
@@ -340,6 +555,7 @@ advancements:
     money:
       enabled: false
       amount: 0.0
+    
     # Advanced conditions (v1.3)
     requires:
       - other_advancement_id
@@ -390,18 +606,22 @@ root:
 
 ## 🔧 Troubleshooting
 
-### Advancements don't appear in-game
+### General Issues
+
+#### Advancements don't appear in-game
 
 **Solution:** You must **restart the server** (not just reload) after creating/editing advancements.
 
-### Players can't see custom advancements
+#### Players can't see custom advancements
 
 1. Check that UltimateAdvancementAPI is installed and running
 2. Verify `adv-gui.yml` is properly configured
 3. Make sure players have unlocked the root advancement (automatic on join)
 4. Restart the server
 
-### OBTAIN_ITEM not triggering
+### Trigger-Specific Issues
+
+#### OBTAIN_ITEM not triggering
 
 1. Verify the item material name is correct (e.g., `DIAMOND`, not `diamond`)
 2. If using Custom Model Data, ensure it matches exactly
@@ -409,26 +629,28 @@ root:
 4. Check permission requirements - player may lack required permission
 5. Check dependencies - player may need to complete other advancements first
 
-### Action bar not showing
+### Other Issues
+
+#### Action bar not showing
 
 1. Check `config.yml` → `progression.show-actionbar: true`
 2. Verify advancement has `showActionBar: true` in display options
-3. Some advancements (JOIN, KILL without counter) don't use action bar
+3. Some advancements (JOIN, ENTER_DIMENSION) don't use action bar
 
-### Rewards not working
+#### Rewards not working
 
 1. **Commands:** Verify syntax (no `/` prefix, use `%player%` placeholder)
 2. **Money:** Install Vault + an economy plugin (EssentialsX, etc.)
 3. Check console for error messages
 
-### Database connection fails (MySQL)
+#### Database connection fails (MySQL)
 
 1. Verify MySQL server is running
 2. Check credentials in `config.yml`
 3. Ensure database exists: `CREATE DATABASE premiumadvancements;`
 4. Check firewall allows connection on port 3306
 
-### Dependencies not working
+#### Dependencies not working
 
 1. Verify required advancement IDs exist and are spelled correctly
 2. Check that players have actually completed the required advancements
@@ -471,6 +693,7 @@ root:
 
 ## 💡 Tips & Best Practices
 
+### General Tips
 1. **Always restart the server** after creating/editing advancements
 2. Use **dependencies** to create logical progression chains
 3. Use **world restrictions** for dimension-specific achievements
