@@ -1,4 +1,4 @@
-# 🌟 Premium Advancements - Documentation v1.4
+# 🌟 Premium Advancements - Documentation v1.4.0
 
 [![Minecraft Version](https://img.shields.io/badge/Minecraft-1.21+-brightgreen.svg)](https://papermc.io/)
 [![Java Version](https://img.shields.io/badge/Java-21-orange.svg)](https://adoptium.net/)
