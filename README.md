@@ -2,11 +2,11 @@
 
 # Premium Advancements
 
-**A powerful custom advancement system with an intuitive GUI editor, 43+ trigger types, progression tracking, and rewards.**
+**A powerful custom advancement system with an intuitive GUI editor, 44+ trigger types, progression tracking, and rewards.**
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21+-brightgreen)](https://papermc.io)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://adoptium.net)
-[![Version](https://img.shields.io/badge/version-1.50-blue)]()
+[![Version](https://img.shields.io/badge/version-1.60-blue)]()
 
 [Features](#-key-features) • [Triggers](#-trigger-types) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Commands](#-commands--permissions)
 
@@ -27,11 +27,14 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 | Category | Features |
 |----------|----------|
 | **GUI Editor** | Create, edit, and delete advancements entirely in-game via `/padv gui` |
-| **43+ Triggers** | From basic (JOIN, BREAK_BLOCK) to advanced (GLIDE, RAID_WIN, TRADE, SLEEP) |
+| **44+ Triggers** | From basic (JOIN, BREAK_BLOCK) to advanced (GLIDE, RAID_WIN, TRADE, SLEEP) |
 | **Progression** | Counter-based tracking with persistent cross-session progress |
-| **Rewards** | Console commands + Vault economy money on completion |
-| **Notifications** | Toast popups, chat announcements, action bar progress |
+| **Rewards** | Console commands + Vault economy money + custom items + permissions + PlayerPoints + weighted loot pools |
+| **Notifications** | Toast popups, chat announcements, action bar progress, server broadcasts |
 | **Dependencies** | Chain advancements — require completions before unlocking |
+| **Hidden Advancements** | Secret advancements that stay hidden until all requirements are met |
+| **Connection System** | Visually link advancements into tree structures with `connection.target` |
+| **Multi-Material** | Specify multiple blocks, items, or entities in a single advancement |
 | **World Restrictions** | Limit advancements to specific worlds |
 | **Permission Gates** | Require permissions to unlock advancements |
 | **Custom Items** | ItemsAdder/Oraxen support via Custom Model Data |
@@ -52,6 +55,7 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 | `JOIN` | Player joins the server | — |
 | `KILL` | Kill any entity | Entity type |
 | `BREAK_BLOCK` | Break blocks | Block type, world cooldown |
+| `CHOP_TREE` | Break any log (oak, spruce, birch, etc.) | — |
 | `PLACE_BLOCK` | Place blocks | Block type, world cooldown |
 | `OBTAIN_ITEM` | Obtain items (pickup, chests, crafting) | Item type, Custom Model Data |
 | `CRAFT_ITEM` | Craft items | Item type, Custom Model Data |
@@ -146,6 +150,7 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 4. **Place** PremiumAdvancements.jar and all dependencies in your `plugins/` folder
 5. **Restart** your server
 6. Run **`/padv gui`** to start creating advancements
+7. Run **`/padv reload`** to apply changes without restarting
 
 ---
 
@@ -157,7 +162,7 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 4. Choose a **trigger** (e.g., `JOIN`)
 5. *(Optional)* Add **reward commands** or **money**
 6. Click **"Save"**
-7. **Restart** the server to see advancements in-game
+7. Run **`/padv reload`** to see advancements in-game immediately
 8. Press **L** to open the advancement tab
 
 > **Tip:** Use `/padv info <id>` to see advancement details and placeholder IDs.
