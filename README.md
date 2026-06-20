@@ -2,13 +2,13 @@
 
 # Premium Advancements
 
-**A powerful custom advancement system with an intuitive GUI editor, 44+ trigger types, progression tracking, and rewards.**
+**A powerful custom advancement system with an intuitive in-game and web GUI editor, 44+ trigger types, Discord webhooks, progression tracking, and 7 reward types.**
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21+-brightgreen)](https://papermc.io)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://adoptium.net)
-[![Version](https://img.shields.io/badge/version-1.60-blue)]()
+[![Version](https://img.shields.io/badge/version-1.70-blue)](https://github.com/XPaladiumyX/PremiumAdvancements-Releases)
 
-[Features](#-key-features) • [Triggers](#-trigger-types) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Commands](#-commands--permissions)
+[Features](#-key-features) • [Triggers](#-trigger-types) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Web Editor](#-web-editor) • [Commands](#-commands--permissions)
 
 ---
 
@@ -16,9 +16,9 @@
 
 ## Overview
 
-Premium Advancements lets you create **unlimited custom advancements** with a full in-game GUI editor — no need to edit configuration files manually. Track player progression in real-time, reward completions with commands or economy money, and chain advancements together for progression systems.
+Premium Advancements lets you create **unlimited custom advancements** with a full in-game GUI editor and a **browser-based web editor** - no need to edit configuration files manually. Track player progression in real-time, reward completions with commands, items, money, permissions, or Discord webhooks, and chain advancements together for progression systems.
 
-Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, and integrates with **PlaceholderAPI** and **Vault**.
+Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, and integrates with **PlaceholderAPI**, **Vault**, **LuckPerms**, and **PlayerPoints**.
 
 ---
 
@@ -27,11 +27,13 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 | Category | Features |
 |----------|----------|
 | **GUI Editor** | Create, edit, and delete advancements entirely in-game via `/padv gui` |
-| **44+ Triggers** | From basic (JOIN, BREAK_BLOCK) to advanced (GLIDE, RAID_WIN, TRADE, SLEEP) |
+| **Web Editor** | Browser-based editor with live tree view, drag & drop positioning, undo/redo, import/export JSON |
+| **44+ Triggers** | From basic (JOIN, BREAK_BLOCK) to advanced (GLIDE, RAID_WIN, TRADE, SLEEP, CHOP_TREE) |
 | **Progression** | Counter-based tracking with persistent cross-session progress |
-| **Rewards** | Console commands + Vault economy money + custom items + permissions + PlayerPoints + weighted loot pools |
+| **Rewards** | Console commands + Vault money + custom items + LuckPerms permissions + PlayerPoints + weighted loot pools + global broadcast |
+| **Discord Webhook** | Send customizable Discord embeds on advancement completion, per-advancement toggle |
 | **Notifications** | Toast popups, chat announcements, action bar progress, server broadcasts |
-| **Dependencies** | Chain advancements — require completions before unlocking |
+| **Dependencies** | Chain advancements - require completions before unlocking |
 | **Hidden Advancements** | Secret advancements that stay hidden until all requirements are met |
 | **Connection System** | Visually link advancements into tree structures with `connection.target` |
 | **Multi-Material** | Specify multiple blocks, items, or entities in a single advancement |
@@ -52,10 +54,10 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 
 | Trigger | Description | Configurable Filters |
 |---------|-------------|---------------------|
-| `JOIN` | Player joins the server | — |
+| `JOIN` | Player joins the server | - |
 | `KILL` | Kill any entity | Entity type |
 | `BREAK_BLOCK` | Break blocks | Block type, world cooldown |
-| `CHOP_TREE` | Break any log (oak, spruce, birch, etc.) | — |
+| `CHOP_TREE` | Break any log (oak, spruce, birch, etc.) | - |
 | `PLACE_BLOCK` | Place blocks | Block type, world cooldown |
 | `OBTAIN_ITEM` | Obtain items (pickup, chests, crafting) | Item type, Custom Model Data |
 | `CRAFT_ITEM` | Craft items | Item type, Custom Model Data |
@@ -66,11 +68,11 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 
 | Trigger | Description | Configurable Filters |
 |---------|-------------|---------------------|
-| `ANVIL_USE` | Use an anvil | — |
-| `GRINDSTONE_USE` | Use a grindstone | — |
+| `ANVIL_USE` | Use an anvil | - |
+| `GRINDSTONE_USE` | Use a grindstone | - |
 | `ENCHANT_ITEM` | Enchant at an enchantment table | Item type |
 | `ENCHANT` | Enchant with specific enchantment | Enchantment type, minimum level |
-| `COMPOSTER_USE` | Use a composter | — |
+| `COMPOSTER_USE` | Use a composter | - |
 | `ARMOR_EQUIP` | Equip armor pieces | Armor type, Custom Model Data |
 | `FILL_BUCKET` | Fill a bucket | Item type, Custom Model Data |
 | `EMPTY_BUCKET` | Empty a bucket | Item type, Custom Model Data |
@@ -81,11 +83,11 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 |---------|-------------|---------------------|
 | `ENTER_DIMENSION` | Enter a dimension | NORMAL, NETHER, or THE_END |
 | `TRAVEL_DISTANCE` | Travel a distance | Mode: TOTAL, WALKING, or BOAT |
-| `JUMP` | Jump | — |
-| `GLIDE` | Fly with elytra | — |
-| `SWIM` | Swim in water | — |
-| `CLIMB` | Climb ladders/vines | — |
-| `RIPTIDE` | Use riptide trident | — |
+| `JUMP` | Jump | - |
+| `GLIDE` | Fly with elytra | - |
+| `SWIM` | Swim in water | - |
+| `CLIMB` | Climb ladders/vines | - |
+| `RIPTIDE` | Use riptide trident | - |
 
 ### Entity & Interaction
 
@@ -111,13 +113,13 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 | Trigger | Description | Configurable Filters |
 |---------|-------------|---------------------|
 | `DEATH` | Die (deferred to respawn) | Cause: FALL, LAVA, PVP, MOB |
-| `DAMAGE_DEALT` | Deal damage | — |
-| `DAMAGE_TAKEN` | Take damage | — |
-| `RAID_WIN` | Win a raid | — |
-| `TARGET_BLOCK` | Hit a target block | — |
-| `BELL_RING` | Ring a bell | — |
-| `CROSSBOW_SHOT` | Shoot a crossbow | — |
-| `FIREWORK` | Launch fireworks | — |
+| `DAMAGE_DEALT` | Deal damage | - |
+| `DAMAGE_TAKEN` | Take damage | - |
+| `RAID_WIN` | Win a raid | - |
+| `TARGET_BLOCK` | Hit a target block | - |
+| `BELL_RING` | Ring a bell | - |
+| `CROSSBOW_SHOT` | Shoot a crossbow | - |
+| `FIREWORK` | Launch fireworks | - |
 | `SNIFF` | Brush suspicious sand/gravel | Block type |
 | `SLEEP` | Sleep in a bed | Bed color |
 
@@ -140,6 +142,15 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 ![Rewards](https://i.imgur.com/K5ly78M.png)
 *Rewards and conditions configuration*
 
+![Discord Webhook](https://i.imgur.com/H1kcSHg.png)
+*Discord webhook embed with rewards summary*
+
+![Web Editor](https://i.imgur.com/b63bL7g.png)
+*Web editor: full advancement creation wizard*
+
+![Web Editor Tree](https://i.imgur.com/ATvyMvn.png)
+*Web editor: live tree view with drag & drop positioning*
+
 ---
 
 ## Installation
@@ -156,7 +167,7 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 
 ## Quick Start
 
-1. **`/padv gui`** — Open the management GUI
+1. **`/padv gui`** - Open the management GUI
 2. Click **"Create Advancement"**
 3. Set a **title**, **description**, and **icon**
 4. Choose a **trigger** (e.g., `JOIN`)
@@ -169,22 +180,58 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 
 ---
 
+## Web Editor
+
+Premium Advancements includes a **browser-based web editor** accessible via `/padv editor` in-game.
+
+### Features
+
+- **Live Tree View** - Visual advancement hierarchy with connection lines, zoom/pan
+- **Drag & Drop Positioning** - Toggle move mode, click to pick up an advancement, move the mouse to position it, click again to drop
+- **Undo/Redo** - Ctrl+Z / Ctrl+Y, or use the top-right buttons
+- **Arrow Key Nudge** - Fine-tune with arrow keys (Shift for 1.0 step)
+- **Full Creation & Edit Wizard** - 5 tabs (Basic, Trigger, Display, Rewards, Advanced) with dropdowns, icon browser, tag inputs
+- **Search & Filter** - Filter advancements by name or ID
+- **Import / Export JSON** - Save and load advancement presets
+
+### How to Use
+
+1. Run **`/padv editor`** in-game to get your editor link
+2. Open the link in your browser
+3. If prompted, run **`/padv editor-trust <code>`** to authorize your browser
+4. Edit advancements visually and click **SAVE** to upload changes
+5. Run **`/padv apply <token>`** in-game to apply saved changes
+
+---
+
 ## Commands & Permissions
 
 | Command | Description | Permission |
 |---------|-------------|------------|
-| `/padv` | Show help menu | — |
-| `/padv gui` | Open management GUI | `premiumadvancements.admin` |
+| `/padv` | Show help menu | - |
+| `/padv gui` | Open in-game management GUI | `premiumadvancements.admin` |
+| `/padv editor` | Get web editor link | `premiumadvancements.admin` |
+| `/padv editor-trust <code>` | Authorize a browser session | `premiumadvancements.admin` |
 | `/padv info <id>` | Show advancement details | `premiumadvancements.admin` |
+| `/padv give <player> <advancement>` | Grant an advancement | `premiumadvancements.give` |
+| `/padv take <player> <advancement\|all>` | Revoke an advancement | `premiumadvancements.take` |
+| `/padv list [player]` | List completed advancements | `premiumadvancements.list` (own) / `premiumadvancements.list.others` |
+| `/padv stats [player]` | Open stats GUI | `premiumadvancements.stats` (own) / `premiumadvancements.stats.others` |
+| `/padv reset <player> <id\|all>` | Reset player progress | `premiumadvancements.reset` |
 | `/padv reload` | Reload configuration | `premiumadvancements.admin` |
 | `/padv placeholders` | List all placeholders | `premiumadvancements.admin` |
-| `/padv reset <player> <id\|all>` | Reset player progress | `premiumadvancements.reset` |
 
 **Alias:** `/premiumadvancements`
 
 | Permission | Default | Description |
 |------------|---------|-------------|
 | `premiumadvancements.admin` | OP | Access GUI and admin commands |
+| `premiumadvancements.give` | OP | Grant advancements |
+| `premiumadvancements.take` | OP | Revoke advancements |
+| `premiumadvancements.list` | **true** | List own advancements |
+| `premiumadvancements.list.others` | OP | List others' advancements |
+| `premiumadvancements.stats` | **true** | View own stats |
+| `premiumadvancements.stats.others` | OP | View others' stats |
 | `premiumadvancements.reset` | OP | Reset player advancements |
 
 ### Placeholders
@@ -211,6 +258,8 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 | [UltimateAdvancementAPI](https://www.spigotmc.org/resources/95585/) | Required | 2.7.1+ |
 | [Vault](https://www.spigotmc.org/resources/34315/) | Optional | Latest |
 | [PlaceholderAPI](https://www.spigotmc.org/resources/6245/) | Optional | 2.11.6+ |
+| [LuckPerms](https://luckperms.net/) | Optional | Latest |
+| [PlayerPoints](https://www.spigotmc.org/resources/80749/) | Optional | Latest |
 | MySQL/MariaDB | Optional | 5.7+ / 10.2+ |
 
 ---
@@ -219,11 +268,11 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 
 All configuration files are generated on first start in `plugins/PremiumAdvancements/`:
 
-- **`config.yml`** — Language, database, progression, metrics
-- **`advancements.yml`** — All custom advancements (edit via GUI or manually)
-- **`adv-gui.yml`** — Tab appearance (namespace, icon, background)
-- **`languages/en.yml`** — English messages
-- **`languages/fr.yml`** — French messages
+- **`config.yml`** - Language, database, progression, metrics
+- **`advancements.yml`** - All custom advancements (edit via GUI or manually)
+- **`adv-gui.yml`** - Tab appearance (namespace, icon, background)
+- **`languages/en.yml`** - English messages
+- **`languages/fr.yml`** - French messages
 
 ---
 
