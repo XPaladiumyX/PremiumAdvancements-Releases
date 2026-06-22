@@ -8,7 +8,7 @@
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://adoptium.net)
 [![Version](https://img.shields.io/badge/version-1.70-blue)](https://github.com/XPaladiumyX/PremiumAdvancements-Releases)
 
-[Features](#-key-features) • [Triggers](#-trigger-types) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Web Editor](#-web-editor) • [Commands](#-commands--permissions)
+[Features](#-key-features) • [Triggers](#-trigger-types) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Web Editor](#-web-editor) • [Commands](#-commands--permissions) • [Wiki](https://wiki.skyxnetwork.net/advancements/)
 
 ---
 
@@ -279,6 +279,7 @@ All configuration files are generated on first start in `plugins/PremiumAdvancem
 ## Support
 
 - **Discord:** [discord.gg/pTErYjTh5h](https://discord.gg/pTErYjTh5h)
+- **Wiki:** [wiki.skyxnetwork.net/advancements](https://wiki.skyxnetwork.net/advancements/)
 - **Website:** [skyxnetwork.net](https://skyxnetwork.net)
 - **Issues:** [GitHub Issues](https://github.com/XPaladiumyX/PremiumAdvancements-Releases/issues)
 
