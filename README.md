@@ -6,7 +6,7 @@
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21+-brightgreen)](https://papermc.io)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://adoptium.net)
-[![Version](https://img.shields.io/badge/version-1.70-blue)](https://github.com/XPaladiumyX/PremiumAdvancements-Releases)
+[![Version](https://img.shields.io/badge/version-2.0-blue)](https://github.com/XPaladiumyX/PremiumAdvancements-Releases)
 
 [Features](#-key-features) • [Triggers](#-trigger-types) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Web Editor](#-web-editor) • [Commands](#-commands--permissions) • [Wiki](https://wiki.skyxnetwork.net/advancements/)
 
@@ -26,9 +26,11 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 
 | Category | Features |
 |----------|----------|
+| **Multi-Tab System** | Organize advancements across multiple tabs with per-tab icon, background, and namespace |
+| **Vanilla Integration** | Minecraft's 125+ built-in advancements loaded read-only with correct icons and tree positions |
 | **GUI Editor** | Create, edit, and delete advancements entirely in-game via `/padv gui` |
 | **Web Editor** | Browser-based editor with live tree view, drag & drop positioning, undo/redo, import/export JSON |
-| **44+ Triggers** | From basic (JOIN, BREAK_BLOCK) to advanced (GLIDE, RAID_WIN, TRADE, SLEEP, CHOP_TREE) |
+| **45+ Triggers** | From basic (JOIN, BREAK_BLOCK) to advanced (GLIDE, RAID_WIN, TRADE, SLEEP, CHOP_TREE, MANUAL, PLACEHOLDER) |
 | **Progression** | Counter-based tracking with persistent cross-session progress |
 | **Rewards** | Console commands + Vault money + custom items + LuckPerms permissions + PlayerPoints + weighted loot pools + global broadcast |
 | **Discord Webhook** | Send customizable Discord embeds on advancement completion, per-advancement toggle |
@@ -122,6 +124,8 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 | `FIREWORK` | Launch fireworks | - |
 | `SNIFF` | Brush suspicious sand/gravel | Block type |
 | `SLEEP` | Sleep in a bed | Bed color |
+| `MANUAL` | Command-only (via `/padv give`) | — |
+| `PLACEHOLDER` | PAPI-based condition check | Placeholder, operator, value |
 
 ---
 
@@ -212,6 +216,8 @@ Premium Advancements includes a **browser-based web editor** accessible via `/pa
 | `/padv gui` | Open in-game management GUI | `premiumadvancements.admin` |
 | `/padv editor` | Get web editor link | `premiumadvancements.admin` |
 | `/padv editor-trust <code>` | Authorize a browser session | `premiumadvancements.admin` |
+| `/padv tabs` | List all advancement tabs | `premiumadvancements.admin` |
+| `/padv wiki` | Open the plugin wiki | `premiumadvancements.admin` |
 | `/padv info <id>` | Show advancement details | `premiumadvancements.admin` |
 | `/padv give <player> <advancement>` | Grant an advancement | `premiumadvancements.give` |
 | `/padv take <player> <advancement\|all>` | Revoke an advancement | `premiumadvancements.take` |
@@ -246,6 +252,9 @@ Premium Advancements includes a **browser-based web editor** accessible via `/pa
 | `%premiumadvancements_percent_<id>%` | Per-advancement progress % |
 | `%premiumadvancements_latest%` | Latest completed title |
 | `%premiumadvancements_ranking%` | Player rank by completions |
+| `%premiumadvancements_tab_completed_<ns>%` | Advancements completed in tab |
+| `%premiumadvancements_tab_total_<ns>%` | Total advancements in tab |
+| `%premiumadvancements_tab_percent_<ns>%` | Completion % for tab |
 
 ---
 
