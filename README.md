@@ -6,7 +6,7 @@
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21+-brightgreen)](https://papermc.io)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://adoptium.net)
-[![Version](https://img.shields.io/badge/version-2.0-blue)](https://github.com/XPaladiumyX/PremiumAdvancements-Releases)
+[![Version](https://img.shields.io/badge/version-2.4-blue)](https://github.com/XPaladiumyX/PremiumAdvancements-Releases)
 
 [Features](#-key-features) • [Triggers](#-trigger-types) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Web Editor](#-web-editor) • [Commands](#-commands--permissions) • [Wiki](https://wiki.skyxnetwork.net/advancements/)
 
