@@ -2,11 +2,11 @@
 
 # Premium Advancements
 
-**A powerful custom advancement system with an intuitive in-game and web GUI editor, 44+ trigger types, Discord webhooks, progression tracking, and 7 reward types.**
+**A powerful custom advancement system with an intuitive in-game and web GUI editor, 53 trigger types, Discord webhooks, progression tracking, and 8 reward types.**
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21+-brightgreen)](https://papermc.io)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://adoptium.net)
-[![Version](https://img.shields.io/badge/version-2.4-blue)](https://github.com/XPaladiumyX/PremiumAdvancements-Releases)
+[![Version](https://img.shields.io/badge/version-2.5-blue)](https://github.com/XPaladiumyX/PremiumAdvancements-Releases)
 
 [Features](#-key-features) • [Triggers](#-trigger-types) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Web Editor](#-web-editor) • [Commands](#-commands--permissions) • [Wiki](https://wiki.skyxnetwork.net/advancements/)
 
@@ -18,7 +18,7 @@
 
 Premium Advancements lets you create **unlimited custom advancements** with a full in-game GUI editor and a **browser-based web editor** - no need to edit configuration files manually. Track player progression in real-time, reward completions with commands, items, money, permissions, or Discord webhooks, and chain advancements together for progression systems.
 
-Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, and integrates with **PlaceholderAPI**, **Vault**, **LuckPerms**, and **PlayerPoints**.
+Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, and integrates with **PlaceholderAPI**, **Vault**, **LuckPerms**, **PlayerPoints**, and **WorldGuard**.
 
 ---
 
@@ -30,7 +30,7 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 | **Vanilla Integration** | Minecraft's 125+ built-in advancements loaded read-only with correct icons and tree positions |
 | **GUI Editor** | Create, edit, and delete advancements entirely in-game via `/padv gui` |
 | **Web Editor** | Browser-based editor with live tree view, drag & drop positioning, undo/redo, import/export JSON |
-| **45+ Triggers** | From basic (JOIN, BREAK_BLOCK) to advanced (GLIDE, RAID_WIN, TRADE, SLEEP, CHOP_TREE, MANUAL, PLACEHOLDER) |
+| **53 Triggers** | Block/entity/item triggers, biome entry, WorldGuard regions, vanilla advancement chaining, playtime, login streaks, placeholders, and more ([full list](https://wiki.skyxnetwork.net/advancements/triggers/)) |
 | **Progression** | Counter-based tracking with persistent cross-session progress |
 | **Rewards** | Console commands + Vault money + custom items + LuckPerms permissions + PlayerPoints + weighted loot pools + global broadcast |
 | **Discord Webhook** | Send customizable Discord embeds on advancement completion, per-advancement toggle |
@@ -52,80 +52,18 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 
 ## Trigger Types
 
-### Basic
+**53 trigger types** covering all aspects of Minecraft gameplay:
 
-| Trigger | Description | Configurable Filters |
-|---------|-------------|---------------------|
-| `JOIN` | Player joins the server | - |
-| `KILL` | Kill any entity | Entity type |
-| `BREAK_BLOCK` | Break blocks | Block type, world cooldown |
-| `CHOP_TREE` | Break any log (oak, spruce, birch, etc.) | - |
-| `PLACE_BLOCK` | Place blocks | Block type, world cooldown |
-| `OBTAIN_ITEM` | Obtain items (pickup, chests, crafting) | Item type, Custom Model Data |
-| `CRAFT_ITEM` | Craft items | Item type, Custom Model Data |
-| `SMELT_ITEM` | Smelt in furnace/blast furnace/smoker | Item type |
-| `DROP_ITEM` | Drop items | Item type, Custom Model Data |
+- **Basic** - JOIN, BREAK_BLOCK, PLACE_BLOCK, KILL, OBTAIN_ITEM, CRAFT_ITEM, SMELT_ITEM, DROP_ITEM, CHOP_TREE
+- **Interaction** - ANVIL_USE, GRINDSTONE_USE, ENCHANT_ITEM, ENCHANT, COMPOSTER_USE, ARMOR_EQUIP, FILL_BUCKET, EMPTY_BUCKET
+- **Exploration** - ENTER_DIMENSION, TRAVEL_DISTANCE, BIOME_ENTER, REGION_ENTER (WorldGuard), VANILLA_ADVANCEMENT
+- **Entity** - FISH, BREED, TAME, SHEAR, MILK, TRADE
+- **Items & Status** - CONSUME, EAT, POTION_EFFECT, SNIFF
+- **Combat & Events** - DEATH, DAMAGE_DEALT, DAMAGE_TAKEN, RAID_WIN, TARGET_BLOCK, BELL_RING, CROSSBOW_SHOT, FIREWORK, SLEEP
+- **Movement** - JUMP, GLIDE, SWIM, CLIMB, RIPTIDE, NETHER_ROOF
+- **Advanced** - PLAYTIME, LOGIN_STREAK, LISTEN_MUSIC, MANUAL (command-only), PLACEHOLDER (PAPI-based)
 
-### Interaction
-
-| Trigger | Description | Configurable Filters |
-|---------|-------------|---------------------|
-| `ANVIL_USE` | Use an anvil | - |
-| `GRINDSTONE_USE` | Use a grindstone | - |
-| `ENCHANT_ITEM` | Enchant at an enchantment table | Item type |
-| `ENCHANT` | Enchant with specific enchantment | Enchantment type, minimum level |
-| `COMPOSTER_USE` | Use a composter | - |
-| `ARMOR_EQUIP` | Equip armor pieces | Armor type, Custom Model Data |
-| `FILL_BUCKET` | Fill a bucket | Item type, Custom Model Data |
-| `EMPTY_BUCKET` | Empty a bucket | Item type, Custom Model Data |
-
-### Exploration & Movement
-
-| Trigger | Description | Configurable Filters |
-|---------|-------------|---------------------|
-| `ENTER_DIMENSION` | Enter a dimension | NORMAL, NETHER, or THE_END |
-| `TRAVEL_DISTANCE` | Travel a distance | Mode: TOTAL, WALKING, or BOAT |
-| `JUMP` | Jump | - |
-| `GLIDE` | Fly with elytra | - |
-| `SWIM` | Swim in water | - |
-| `CLIMB` | Climb ladders/vines | - |
-| `RIPTIDE` | Use riptide trident | - |
-
-### Entity & Interaction
-
-| Trigger | Description | Configurable Filters |
-|---------|-------------|---------------------|
-| `FISH` | Catch fish | Item type |
-| `BREED` | Breed animals | Entity type |
-| `TAME` | Tame animals | Entity type |
-| `SHEAR` | Shear entities | Entity type, sheep color |
-| `MILK` | Milk cows/mooshrooms | Entity type |
-| `TRADE` | Trade with villagers | Villager profession |
-
-### Items & Status
-
-| Trigger | Description | Configurable Filters |
-|---------|-------------|---------------------|
-| `CONSUME` | Drink potions/milk/honey | Item type, Custom Model Data |
-| `EAT` | Eat food | Item type, Custom Model Data |
-| `POTION_EFFECT` | Get a potion effect | Effect type, minimum amplifier |
-
-### Combat & Events
-
-| Trigger | Description | Configurable Filters |
-|---------|-------------|---------------------|
-| `DEATH` | Die (deferred to respawn) | Cause: FALL, LAVA, PVP, MOB |
-| `DAMAGE_DEALT` | Deal damage | - |
-| `DAMAGE_TAKEN` | Take damage | - |
-| `RAID_WIN` | Win a raid | - |
-| `TARGET_BLOCK` | Hit a target block | - |
-| `BELL_RING` | Ring a bell | - |
-| `CROSSBOW_SHOT` | Shoot a crossbow | - |
-| `FIREWORK` | Launch fireworks | - |
-| `SNIFF` | Brush suspicious sand/gravel | Block type |
-| `SLEEP` | Sleep in a bed | Bed color |
-| `MANUAL` | Command-only (via `/padv give`) | — |
-| `PLACEHOLDER` | PAPI-based condition check | Placeholder, operator, value |
+> See the [full trigger reference](https://wiki.skyxnetwork.net/advancements/triggers/) on the wiki for all configurable filters and options.
 
 ---
 
@@ -223,6 +161,9 @@ Premium Advancements includes a **browser-based web editor** accessible via `/pa
 | `/padv take <player> <advancement\|all>` | Revoke an advancement | `premiumadvancements.take` |
 | `/padv list [player]` | List completed advancements | `premiumadvancements.list` (own) / `premiumadvancements.list.others` |
 | `/padv stats [player]` | Open stats GUI | `premiumadvancements.stats` (own) / `premiumadvancements.stats.others` |
+| `/padv setplaytime <player> <minutes>` | Set a player's total playtime (v2.5) | `premiumadvancements.admin` |
+| `/padv loginstreak [player]` | Check a player's login streak (v2.5) | `premiumadvancements.admin` |
+| `/padv setloginstreak <player> <days>` | Set a player's login streak (v2.5) | `premiumadvancements.admin` |
 | `/padv reset <player> <id\|all>` | Reset player progress | `premiumadvancements.reset` |
 | `/padv reload` | Reload configuration | `premiumadvancements.admin` |
 | `/padv placeholders` | List all placeholders | `premiumadvancements.admin` |
@@ -269,6 +210,7 @@ Premium Advancements includes a **browser-based web editor** accessible via `/pa
 | [PlaceholderAPI](https://www.spigotmc.org/resources/6245/) | Optional | 2.11.6+ |
 | [LuckPerms](https://luckperms.net/) | Optional | Latest |
 | [PlayerPoints](https://www.spigotmc.org/resources/80749/) | Optional | Latest |
+| [WorldGuard](https://dev.bukkit.org/projects/worldguard) | Optional | 7.0+ (for REGION_ENTER trigger) |
 | MySQL/MariaDB | Optional | 5.7+ / 10.2+ |
 
 ---
