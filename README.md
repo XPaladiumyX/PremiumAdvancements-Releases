@@ -4,9 +4,9 @@
 
 **A powerful custom advancement system with an intuitive in-game and web GUI editor, 53 trigger types, Discord webhooks, progression tracking, and 8 reward types.**
 
-[![Minecraft](https://img.shields.io/badge/Minecraft-1.21+-brightgreen)](https://papermc.io)
-[![Java](https://img.shields.io/badge/Java-21-orange)](https://adoptium.net)
-[![Version](https://img.shields.io/badge/version-2.5-blue)](https://github.com/XPaladiumyX/PremiumAdvancements-Releases)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.20.4+-brightgreen)](https://papermc.io)
+[![Java](https://img.shields.io/badge/Java-17+-orange)](https://adoptium.net)
+[![Version](https://img.shields.io/github/v/release/XPaladiumyX/PremiumAdvancements-Releases?label=Version&sort=semver&color=blue)](https://github.com/XPaladiumyX/PremiumAdvancements-Releases)
 
 [Features](#-key-features) • [Triggers](#-trigger-types) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Web Editor](#-web-editor) • [Commands](#-commands--permissions) • [Wiki](https://wiki.skyxnetwork.net/advancements/)
 
@@ -97,7 +97,7 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 
 ## Installation
 
-1. **Install Paper 1.21.4+** (or a Paper fork like Purpur)
+1. **Install Paper, Spigot or Purpur 1.20.4+**
 2. **Download** [UltimateAdvancementAPI](https://www.spigotmc.org/resources/95585/) v2.7.1+ (required)
 3. *(Optional)* **Download** [Vault](https://www.spigotmc.org/resources/34315/) + an economy plugin for money rewards
 4. **Place** PremiumAdvancements.jar and all dependencies in your `plugins/` folder
@@ -203,8 +203,8 @@ Premium Advancements includes a **browser-based web editor** accessible via `/pa
 
 | Dependency | Type | Version |
 |------------|------|---------|
-| [Paper](https://papermc.io) (or fork) | Server | 1.21.4+ |
-| Java | Runtime | 21+ |
+| [Paper](https://papermc.io) / [Spigot](https://spigotmc.org) / [Purpur](https://purpurmc.org) | Server | 1.20.4+ |
+| Java | Runtime | 17+ (21+ required by MC 1.20.5+) |
 | [UltimateAdvancementAPI](https://www.spigotmc.org/resources/95585/) | Required | 2.7.1+ |
 | [Vault](https://www.spigotmc.org/resources/34315/) | Optional | Latest |
 | [PlaceholderAPI](https://www.spigotmc.org/resources/6245/) | Optional | 2.11.6+ |
