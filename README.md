@@ -52,7 +52,7 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 
 ## Trigger Types
 
-**53 trigger types** covering all aspects of Minecraft gameplay:
+**54 trigger types** covering all aspects of Minecraft gameplay:
 
 - **Basic** - JOIN, BREAK_BLOCK, PLACE_BLOCK, KILL, OBTAIN_ITEM, CRAFT_ITEM, SMELT_ITEM, DROP_ITEM, CHOP_TREE
 - **Interaction** - ANVIL_USE, GRINDSTONE_USE, ENCHANT_ITEM, ENCHANT, COMPOSTER_USE, ARMOR_EQUIP, FILL_BUCKET, EMPTY_BUCKET
@@ -61,6 +61,7 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 - **Items & Status** - CONSUME, EAT, POTION_EFFECT, SNIFF
 - **Combat & Events** - DEATH, DAMAGE_DEALT, DAMAGE_TAKEN, RAID_WIN, TARGET_BLOCK, BELL_RING, CROSSBOW_SHOT, FIREWORK, SLEEP
 - **Movement** - JUMP, GLIDE, SWIM, CLIMB, RIPTIDE, NETHER_ROOF
+- **Command** - COMMAND (run a specific command, e.g. /sethome)
 - **Advanced** - PLAYTIME, LOGIN_STREAK, LISTEN_MUSIC, MANUAL (command-only), PLACEHOLDER (PAPI-based)
 
 > See the [full trigger reference](https://wiki.skyxnetwork.net/advancements/triggers/) on the wiki for all configurable filters and options.
@@ -98,7 +99,7 @@ Works with **ItemsAdder/Oraxen** custom items, supports **SQLite and MySQL**, an
 ## Installation
 
 1. **Install Paper, Spigot or Purpur 1.20.4+**
-2. **Download** [UltimateAdvancementAPI](https://www.spigotmc.org/resources/95585/) v2.7.1+ (required)
+2. **Download** [UltimateAdvancementAPI](https://www.spigotmc.org/resources/95585/) v3.0.0-beta-4+ (required)
 3. *(Optional)* **Download** [Vault](https://www.spigotmc.org/resources/34315/) + an economy plugin for money rewards
 4. **Place** PremiumAdvancements.jar and all dependencies in your `plugins/` folder
 5. **Restart** your server
@@ -205,7 +206,7 @@ Premium Advancements includes a **browser-based web editor** accessible via `/pa
 |------------|------|---------|
 | [Paper](https://papermc.io) / [Spigot](https://spigotmc.org) / [Purpur](https://purpurmc.org) | Server | 1.20.4+ |
 | Java | Runtime | 17+ (21+ required by MC 1.20.5+) |
-| [UltimateAdvancementAPI](https://www.spigotmc.org/resources/95585/) | Required | 2.7.1+ |
+| [UltimateAdvancementAPI](https://www.spigotmc.org/resources/95585/) | Required | 3.0.0-beta-4+ |
 | [Vault](https://www.spigotmc.org/resources/34315/) | Optional | Latest |
 | [PlaceholderAPI](https://www.spigotmc.org/resources/6245/) | Optional | 2.11.6+ |
 | [LuckPerms](https://luckperms.net/) | Optional | Latest |
